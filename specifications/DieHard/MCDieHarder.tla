@@ -4,7 +4,7 @@ EXTENDS DieHarder
 (***************************************************************************)
 (* To have TLC find a solution, we must tell it what values to use for the *)
 (* constant parameters Jug, Capacity, and Goal.  However, TLC does not     *)
-(* allow one to write write function-valued expressions in a configuration *)
+(* allow one to write function-valued expressions in a configuration       *)
 (* file.  So, we use this module, which extends module DieHarder, to       *)
 (* define a function MCCapacity and have the configuration file TLC to     *)
 (* substitute MCCapacity for Capacity.  Since we need to know the value of *)
