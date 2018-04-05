@@ -61,6 +61,6 @@ TCConsistent ==
 
 THEOREM TCSpec => [](TCTypeOK /\ TCConsistent)
   (*************************************************************************)
-  (* Asserts that TCTypeOK and TCInvariant are invariants of the protocol. *)
+  (* Asserts that TCTypeOK and TCConsistent are invariants of the protocol. *)
   (*************************************************************************)
 =============================================================================
