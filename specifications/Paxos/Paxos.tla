@@ -50,7 +50,7 @@ VARIABLE maxBal,
 (* part of the spec says only what messages may be received and does not   *)
 (* assert that any message actually is received.  Thus, there is no        *)
 (* difference between a lost message and one that is never received.  The  *)
-(* liveness property of the spec that we check makes it clear what what    *)
+(* liveness property of the spec that we check makes it clear on what      *)
 (* messages must be received (and hence either not lost or successfully    *)
 (* retransmitted if lost) to guarantee progress.                           *)
 (***************************************************************************)
