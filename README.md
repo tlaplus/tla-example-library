@@ -77,7 +77,8 @@ Do you have your own case study that you like to share with the community? Send 
 | 63 | Loop Invariance | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/LoopInvariance">Loop Invariance</a> | Leslie Lamport | &#10004;  | &#10004; | Int, Seq, FiniteSets, TLC, TLAPS, SequenceTheorems, NaturalsInduction | 
 | 64 | Teaching Concurrency | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/TeachingConcurrency">Teaching Concurrency</a> | Leslie Lamport | &#10004;  | &#10004; | Int, TLAPS | 
 | 65 | Spanning Tree | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/SpanningTree">Spanning Tree</a> | Leslie Lamport |  | &#10004; | Int, FiniteSets, TLC, Randomization | 
-| 66 | Paxos (How to win a Turing Award) | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/PaxosHowToWinATuringAward">Paxos</a> | Leslie Lamport |  | &#10004; | Nat, Int, FiniteSets | 
+| 66 | Paxos (How to win a Turing Award) | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/PaxosHowToWinATuringAward">Paxos</a> | Leslie Lamport |  | &#10004; | Nat, Int, FiniteSets |
+| 67 | Tencent-Paxos | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/TencentPaxos">PaxosStore: high-availability storage made practical in WeChat. Proceedings of the VLDB Endowment(Zheng et al., 2017)</a> | Xingchen Yi, Hengfeng Wei | | &#10004; | Int, FiniteSets |
 
 
 ## License
