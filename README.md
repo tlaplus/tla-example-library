@@ -85,6 +85,7 @@ Do you have your own case study that you like to share with the community? Send 
 | 71 | Echo Algorithm | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/echo">Echo Algorithm</a> | Stephan Merz |   | &#10004; | Naturals, FiniteSets, Relation, TLC | 
 | 72 | Cigarette Smokers problem | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/CigaretteSmokers">Cigarette Smokers problem</a> | Mariusz Ryndzionek |   | &#10004; | Integers, FiniteSets | 
 | 73 | Conway's Game of Life | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/GameOfLife">Conway's Game of Life</a> | Mariusz Ryndzionek |   | &#10004; | Integers | 
+| 74 | Sliding puzzles | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/SlidingPuzzles">Sliding puzzles</a> | Mariusz Ryndzionek |   | &#10004; | Integers | 
 
 ## License
 
