@@ -87,6 +87,7 @@ Do you have your own case study that you like to share with the community? Send 
 | 73 | Conway's Game of Life | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/GameOfLife">Conway's Game of Life</a> | Mariusz Ryndzionek |   | &#10004; | Integers | 
 | 74 | Sliding puzzles | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/SlidingPuzzles">Sliding puzzles</a> | Mariusz Ryndzionek |   | &#10004; | Integers | 
 | 75 | Lock-Free Set | <a href="https://github.com/tlaplus/tlaplus/blob/master/tlatools/org.lamport.tlatools/src/tlc2/tool/fp/OpenAddressing.tla">PlusCal spec of a lock-Free set used by TLC</a> | Markus Kuppe |   | &#10004; | Sequences, FiniteSets, Integers, TLC | &#10004; |
+| 76 | Chameneos | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/Chameneos">Chameneos, a Concurrency Game</a> | Mariusz Ryndzionek |   | &#10004; | Integers | 
 
 ## License
 
