@@ -9,7 +9,7 @@ EXTENDS Integers
 \* N - number of total meeting after which chameneoses fade
 \* M - number of chameneoses
 CONSTANT N, M
-ASSUME N \in Nat
+ASSUME N \in (Nat \ {0}) /\ M \in (Nat \ {0})
 
 VARIABLE chameneoses, meetingPlace, numMeetings
 
