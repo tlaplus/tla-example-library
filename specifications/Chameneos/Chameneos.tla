@@ -6,7 +6,8 @@
 
 EXTENDS Integers
 
-\* number of total meeting after which chameneoses fade
+\* N - number of total meeting after which chameneoses fade
+\* M - number of chameneoses
 CONSTANT N, M
 ASSUME N \in Nat
 
