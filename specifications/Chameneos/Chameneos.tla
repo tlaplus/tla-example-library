@@ -7,17 +7,17 @@
 EXTENDS Integers
 
 \* number of total meeting after which chameneoses fade
-CONSTANT N
+CONSTANT N, M
 ASSUME N \in Nat
 
 VARIABLE chameneoses, meetingPlace, numMeetings
 
 vars == <<chameneoses, meetingPlace, numMeetings>>
 
-Color == {"blue", "red", "yellow", "faded"}
+Color == {"blue", "red", "yellow"}
 Faded == CHOOSE c : c \notin Color
 
-ChameneosID == 1 .. 4
+ChameneosID == 1 .. M
 MeetingPlaceEmpty == CHOOSE e : e \notin ChameneosID
 
 RECURSIVE Sum(_, _)
@@ -50,8 +50,7 @@ Meet(cid) == IF meetingPlace = MeetingPlaceEmpty
                                                ![meetingPlace] = <<newColor, @[2] + 1>>]
                   /\ numMeetings' = numMeetings + 1
 
-Init == /\ chameneoses = [c \in ChameneosID |->
-                                <<<<"blue", "red", "yellow", "blue">>[c], 0>>]
+Init == /\ chameneoses \in [ChameneosID -> Color \X {0}]
         /\ meetingPlace = MeetingPlaceEmpty
         /\ numMeetings = 0
 
