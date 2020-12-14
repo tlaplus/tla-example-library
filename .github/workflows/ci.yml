@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install 
+        run: |
+          sudo apt update
+          sudo apt install -y curl make
+          curl -L -o /tmp/tlaps.bin https://github.com/tlaplus/tlapm/releases/download/v1.4.5/tlaps-1.4.5-x86_64-linux-gnu-inst.bin
+          chmod +x /tmp/tlaps.bin
+          sudo /tmp/tlaps.bin
+      - name: Validate
+        run: |
+          tlapm --summary specifications/Bakery-Boulangerie/*.tla
