@@ -20,7 +20,7 @@ I ran this with alygin's TLA+ extension for VSCode:
 "> TLA+: Check model with TLC" checks the model's correctness.
 
 You can also use TLA+ Toolbox. You may need to "create a model" and
-use the UI to add the invariants and properties at the bottom.
+use the UI to add the invariants and properties at the bottom of this file.
 *)
 
 EXTENDS Integers, TLC
@@ -35,15 +35,14 @@ ASSUME
 (* --algorithm DiningPhilosophers
 
 variables
-    \* This is the Chandy-Misra solution.
-    \* https://en.wikipedia.org/wiki/Dining_philosophers_problem#Chandy/Misra_solution
     forks = [
         fork \in 1..NP |-> [
             \* We start with each fork held by the lowest-number philosopher
             \* adjacent to the fork.
             holder |-> IF fork = 2 THEN 1 ELSE fork,
             \* Each fork starts out "dirty". Eating causes a fork to become
-            \* dirty, after which the philosopher must clean and drop the fork.
+            \* dirty, after which the philosopher must clean the fork and hand
+            \* it to their neighbor.
             clean |-> FALSE
         ]
     ]
@@ -73,9 +72,9 @@ end define;
 \* time and will never run again. Dining philosophers don't randomly die while
 \* clenching forks in the original problem, so let's keep the processes fair.
 fair process Philosopher \in 1..NP
-\* This acts like a member variable and you can access it like one. But it's
-\* actually an array with one element per process, and the "member variable" is
-\* just the corresponding bucket in that array.
+\* This acts like a member variable and you can access it like one. But we're
+\* actually creating an array with one element per process, and the "member
+\* variable" we access is just the corresponding bucket in that array.
 variables hungry = TRUE;
 begin
 Loop:
@@ -105,8 +104,6 @@ Eat:
                 hungry := FALSE;
                 forks[LeftFork(self)].clean := FALSE ||
                 forks[RightFork(self)].clean := FALSE;
-            else
-                requesting[self] := TRUE;    
             end if;
         else
 Think:
@@ -116,8 +113,8 @@ Think:
 end process;
 
 end algorithm; *)
-\* BEGIN TRANSLATION (chksum(pcal) = "2bd927f5" /\ chksum(tla) = "5a036018")
-VARIABLES forks, requesting, pc
+\* BEGIN TRANSLATION (chksum(pcal) = "8d8268d4" /\ chksum(tla) = "16352822")
+VARIABLES forks, pc
 
 (* define statement *)
 LeftFork(p) == p
@@ -135,7 +132,7 @@ CanEat(p) == IsHoldingBothForks(p) /\ BothForksAreClean(p)
 
 VARIABLE hungry
 
-vars == << forks, requesting, pc, hungry >>
+vars == << forks, pc, hungry >>
 
 ProcSet == (1..NP)
 
@@ -147,12 +144,10 @@ Init == (* Global variables *)
                            holder |-> IF fork = 2 THEN 1 ELSE fork,
                    
                    
+                   
                            clean |-> FALSE
                        ]
                    ]
-        /\ requesting =              [
-                            philosopher \in 1..NP |-> FALSE
-                        ]
         (* Process Philosopher *)
         /\ hungry = [self \in 1..NP |-> TRUE]
         /\ pc = [self \in ProcSet |-> "Loop"]
@@ -175,24 +170,20 @@ Loop(self) == /\ pc[self] = "Loop"
               /\ IF hungry[self]
                     THEN /\ IF CanEat(self)
                                THEN /\ pc' = [pc EXCEPT ![self] = "Eat"]
-                                    /\ UNCHANGED requesting
-                               ELSE /\ requesting' = [requesting EXCEPT ![self] = TRUE]
-                                    /\ pc' = [pc EXCEPT ![self] = "Loop"]
+                               ELSE /\ pc' = [pc EXCEPT ![self] = "Loop"]
                     ELSE /\ pc' = [pc EXCEPT ![self] = "Think"]
-                         /\ UNCHANGED requesting
               /\ UNCHANGED hungry
 
 Think(self) == /\ pc[self] = "Think"
                /\ hungry' = [hungry EXCEPT ![self] = TRUE]
                /\ pc' = [pc EXCEPT ![self] = "Loop"]
-               /\ UNCHANGED << forks, requesting >>
+               /\ forks' = forks
 
 Eat(self) == /\ pc[self] = "Eat"
              /\ hungry' = [hungry EXCEPT ![self] = FALSE]
              /\ forks' = [forks EXCEPT ![LeftFork(self)].clean = FALSE,
                                        ![RightFork(self)].clean = FALSE]
              /\ pc' = [pc EXCEPT ![self] = "Loop"]
-             /\ UNCHANGED requesting
 
 Philosopher(self) == Loop(self) \/ Think(self) \/ Eat(self)
 
@@ -201,13 +192,41 @@ Next == (\E self \in 1..NP: Philosopher(self))
 Spec == /\ Init /\ [][Next]_vars
         /\ \A self \in 1..NP : WF_vars(Philosopher(self))
 
-\* END TRANSLATION 
+\* END TRANSLATION
 
-(* PROPERTIES *)
+----
+(* Invariant helpers *)
+----
+
+(* TRUE iff philosophers p and q share a fork between them. *)
+ShareFork(p, q) ==
+    {LeftFork(p), RightFork(p)} \cap {LeftFork(q), RightFork(q)} /= {}
+
+----
+(* Invariants *)
+----
 
 (*
-For each philosopher, at some point that philosopher will not be hungry.
+TLA+ and PlusCal are dynamically-typed, but we can roll our own typechecking
+with an invariant.
 *)
-NobodyStarves == \A p \in 1..NP: <>(~hungry[p])
+TypeOK ==
+    /\ forks \in [1..NP -> [holder: 1..NP, clean: BOOLEAN]]
+    /\ hungry \in [1..NP -> BOOLEAN]
+    /\ pc \in [1..NP -> {"Loop", "Eat", "Think"}]
+
+(* If two philosophers share a fork, they cannot eat at the same time. *)
+ExclusiveAccess ==
+    \A p,q \in 1..NP:
+        p /= q /\ ShareFork(p, q) => ~(pc[p] = "Eat" /\ pc[q] = "Eat")
+
+----
+(* Properties *)
+----
+
+(*
+Every philosopher will eventually get to eat again.
+*)
+NobodyStarves == \A p \in 1..NP: []<>(~hungry[p])
 
 ====
