@@ -89,7 +89,7 @@ Do you have your own case study that you like to share with the community? Send 
 | 75 | Lock-Free Set | <a href="https://github.com/tlaplus/tlaplus/blob/master/tlatools/org.lamport.tlatools/src/tlc2/tool/fp/OpenAddressing.tla">PlusCal spec of a lock-Free set used by TLC</a> | Markus Kuppe |   | &#10004; | Sequences, FiniteSets, Integers, TLC | &#10004; |
 | 76 | Chameneos | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/Chameneos">Chameneos, a Concurrency Game</a> | Mariusz Ryndzionek |   | &#10004; | Integers ||
 | 77 | ParallelRaft | <a                                         href="https://github.com/HappyCS-Gu/Parallel-Raft-tla">A variant of Raft</a> | Xiaosong Gu, Hengfeng Wei, Yu Huang | | &#10004; | Integers, FiniteSets, Sequences, Naturals ||
-
+| 78 | Single Lane Bridge problem | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/SingleLaneBridge">Single Lane Bridge</a> | YounesIO |   | &#10004; | Naturals, FiniteSets, Sequences | &#10004; |
 ## License
 
 The repository is under the MIT license. However, we can upload your benchmarks under your license.
