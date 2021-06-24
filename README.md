@@ -90,7 +90,8 @@ Do you have your own case study that you like to share with the community? Send 
 | 76 | Chameneos | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/Chameneos">Chameneos, a Concurrency Game</a> | Mariusz Ryndzionek |   | &#10004; | Integers ||
 | 77 | ParallelRaft | <a href="https://github.com/HappyCS-Gu/Parallel-Raft-tla">A variant of Raft</a> | Xiaosong Gu, Hengfeng Wei, Yu Huang | | &#10004; | Integers, FiniteSets, Sequences, Naturals ||
 | 78 | TLC MC | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/TLC">PlusCal spec of safety checking as implemented in TLC</a> | Markus Kuppe | | &#10004; | Integers, FiniteSets, Sequences, TLC | &#10004; |
-| 78 | TLA+ Level Checking | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/LevelChecking">Level-checking of TLA+ formulas as described in Specifying Systems</a> | Leslie Lamport | | | Integers, Sequences |  |
+| 79 | TLA+ Level Checking | <a href="https://github.com/tlaplus/Examples/tree/master/specifications/LevelChecking">Level-checking of TLA+ formulas as described in Specifying Systems</a> | Leslie Lamport | | | Integers, Sequences |  |
+| 80 | CRDT | <a href="https://github.com/JYwellin/CRDT-TLA">Specifying and Verifying CRDT Protocols</a> | Ye Ji, Hengfeng Wei | | &#10004;| Naturals, FiniteSets |  |
 
 ## License
 
